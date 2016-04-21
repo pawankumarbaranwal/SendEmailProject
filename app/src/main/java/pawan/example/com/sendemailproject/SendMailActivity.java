@@ -12,7 +12,7 @@ public class SendMailActivity extends AppCompatActivity implements View.OnClickL
     //Internet status flag
     Boolean isConnectionExist = false;
 
-    // Connection detector class 
+    // Connection detector class
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class SendMailActivity extends AppCompatActivity implements View.OnClickL
         Log.i("SendMailActivity", "Send Button Clicked.");
 
         String fromEmail = "pawankumar910@gmail.com";
-        String fromPassword = "extracover";
+        String fromPassword = "password";
         String toEmails = "pawankumarbaranwal@gmail.com";
         Log.i("SendMailActivity", "To List: ");
         String emailSubject = "pawankumar910@gmail.com";
