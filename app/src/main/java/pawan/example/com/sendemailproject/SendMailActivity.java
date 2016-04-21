@@ -26,9 +26,9 @@ public class SendMailActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         Log.i("SendMailActivity", "Send Button Clicked.");
 
-        String fromEmail = "pawankumar910@gmail.com";
+        String fromEmail = "tttttttttttt@gmail.com";
         String fromPassword = "password";
-        String toEmails = "pawankumarbaranwal@gmail.com";
+        String toEmails = "fdxgvldf@gmail.com";
         Log.i("SendMailActivity", "To List: ");
         String emailSubject = "pawankumar910@gmail.com";
         String emailBody = "pawankumar910@gmail.com";

@@ -5,14 +5,21 @@ import android.util.Log;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.AuthenticationFailedException;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class GMail {
 
@@ -53,6 +60,9 @@ public class GMail {
     public MimeMessage createEmailMessage() throws AddressException,
             MessagingException, UnsupportedEncodingException {
 
+        String filePath="/sdcard/SplitTheBill/pawan@gmail.com.txt";
+
+
         mailSession = Session.getDefaultInstance(emailProperties, null);
         emailMessage = new MimeMessage(mailSession);
 
@@ -64,7 +74,31 @@ public class GMail {
         /*}*/
 
         emailMessage.setSubject(emailSubject);
-        emailMessage.setContent(emailBody, "text/html");// for a html email
+        //emailMessage.setContent(emailBody, "text/html");// for a html email
+
+
+
+        BodyPart messageBodyPart = new MimeBodyPart();
+        messageBodyPart.setText("This is message body");
+        // Create a multipar message
+        Multipart multipart = new MimeMultipart();
+
+        // Set text message part
+        multipart.addBodyPart(messageBodyPart);
+
+
+        // Part two is attachment
+        messageBodyPart = new MimeBodyPart();
+        DataSource source = new FileDataSource(filePath);
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(filePath);
+        multipart.addBodyPart(messageBodyPart);
+
+        // Fill the message
+        //messageBodyPart.setText("This is message body");
+
+
+        emailMessage.setContent(multipart);
         // emailMessage.setText(emailBody);// for a text email
         Log.i("GMail", "Email Message created.");
         return emailMessage;
